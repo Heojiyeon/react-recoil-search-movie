@@ -1,9 +1,9 @@
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { searchState } from "../../states/atoms";
 import React, { useCallback } from "react";
 
 const SearchBar = () => {
-  const [searchInput, setSearchInput] = useRecoilState(searchState);
+  const setSearchInput = useSetRecoilState(searchState);
 
   const handleSubmit = useCallback(e => {
     e.preventDefault();
