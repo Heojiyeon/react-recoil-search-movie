@@ -1,30 +1,21 @@
 import { useRecoilState } from "recoil";
-import { searchState, movieListState } from "../../states/atoms";
-import { MovieListRequest } from "../../utils/fetch";
+import { searchState } from "../../states/atoms";
+import React, { useCallback } from "react";
 
 const SearchBar = () => {
   const [searchInput, setSearchInput] = useRecoilState(searchState);
-  const [searchMovieList, setSearchMovieList] = useRecoilState(movieListState);
 
-  const handleSubmit = async e => {
+  const handleSubmit = useCallback(e => {
     e.preventDefault();
-    const result = await MovieListRequest(searchInput);
-    if (result.Response === "True") {
-      setSearchMovieList(result.Search);
-    }
-  };
-
-  const handleChange = ({ target: { value } }) => {
-    setSearchInput(value);
-    console.log("searchInput", searchInput);
-  };
+    setSearchInput(e.target.keyword.value);
+  }, []);
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" value={searchInput} onChange={handleChange} />
+      <input type="text" name="keyword" />
       <button>검색</button>
     </form>
   );
 };
 
-export default SearchBar;
+export default React.memo(SearchBar);

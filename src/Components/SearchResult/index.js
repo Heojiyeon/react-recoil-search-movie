@@ -1,15 +1,34 @@
-import { useRecoilValue } from "recoil";
-import { searchState } from "../../states/atoms";
+import React, { useCallback } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { getMovies, movieIDState } from "../../states/atoms";
 
 const SearchResult = () => {
-  const result = useRecoilValue(searchState);
+  const results = useRecoilValue(getMovies);
+  const finalResults = results.Search;
+
+  const [movieID, setMovieID] = useRecoilState(movieIDState);
+
+  const handleMovie = useCallback(targetID => {
+    setMovieID(targetID);
+  }, []);
+
   return (
     <div>
-      You can see search state by atom
       <br />
-      <strong>{result}</strong>
+      {finalResults &&
+        finalResults.map(result => {
+          return (
+            <div key={result.imdbID}>
+              <img
+                src={result.Poster}
+                alt="영화 이미지"
+                onClick={() => handleMovie(result.imdbID)}
+              />
+            </div>
+          );
+        })}
     </div>
   );
 };
 
-export default SearchResult;
+export default React.memo(SearchResult);
