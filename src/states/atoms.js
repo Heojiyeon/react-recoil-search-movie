@@ -1,6 +1,6 @@
 import { atom, selector } from "recoil";
 import { API_KEY } from "../utils/url";
-// import { ERROR_MESSAGE } from "../utils/constants";
+import { ERROR_MESSAGE } from "../utils/constants";
 import axios from "axios";
 
 // 검색어 상태 관리 atom
@@ -17,9 +17,9 @@ export const getMovies = selector({
       const response = await axios.get(
         `https://www.omdbapi.com?apikey=${API_KEY}&s=${get(searchState)}`
       );
-      // if (!response.ok) {
-      //   throw new Error(ERROR_MESSAGE.WRONG_URL);
-      // }
+      if (response.status !== 200) {
+        throw new Error(ERROR_MESSAGE.WRONG_URL);
+      }
       return response.data;
     } catch (error) {
       console.error(error);
@@ -43,9 +43,9 @@ export const getMovieDetail = selector({
           movieIDState
         )}&plot=full`
       );
-      // if (!response.ok) {
-      //   throw new Error(ERROR_MESSAGE.WRONG_URL);
-      // }
+      if (response.status !== 200) {
+        throw new Error(ERROR_MESSAGE.WRONG_URL);
+      }
       return response.data;
     } catch (error) {
       console.error(error);
