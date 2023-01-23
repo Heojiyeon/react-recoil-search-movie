@@ -1,6 +1,6 @@
+import React from "react";
 import { useRecoilValue } from "recoil";
 import { getMovieDetail } from "../../states/atoms";
-import React from "react";
 
 const MovieDetail = () => {
   const result = useRecoilValue(getMovieDetail);

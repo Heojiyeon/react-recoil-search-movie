@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { getMovies, movieIDState } from "../../states/atoms";
+import { SearchResultContainer } from "./style";
 
 const SearchResult = () => {
   const results = useRecoilValue(getMovies);
@@ -13,8 +14,7 @@ const SearchResult = () => {
   }, []);
 
   return (
-    <div>
-      <br />
+    <SearchResultContainer>
       {finalResults &&
         finalResults.map(result => {
           return (
@@ -27,7 +27,7 @@ const SearchResult = () => {
             </div>
           );
         })}
-    </div>
+    </SearchResultContainer>
   );
 };
 
