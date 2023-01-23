@@ -1,13 +1,15 @@
-import SearchBar from "./Components/SearchBar";
-import { RecoilRoot } from "recoil";
-import SearchResult from "./Components/SearchResult";
 import { Suspense } from "react";
+import { RecoilRoot } from "recoil";
 import MovieDetail from "./Components/MovieDetail";
+import SearchBar from "./Components/SearchBar";
+import SearchResult from "./Components/SearchResult";
+import { LoadingContainer } from "./style";
+
 function App() {
   return (
     <RecoilRoot>
-      <Suspense fallback={<div>Loading...</div>}>
-        <SearchBar />
+      <SearchBar />
+      <Suspense fallback={<LoadingContainer>Loading...</LoadingContainer>}>
         <MovieDetail />
         <SearchResult />
       </Suspense>
