@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { RecoilRoot } from "recoil";
-import MovieDetail from "./Components/MovieDetail";
+import Modal from "./Components/Modal";
 import SearchBar from "./Components/SearchBar";
 import SearchResult from "./Components/SearchResult";
 import { LoadingContainer } from "./style";
@@ -10,7 +10,7 @@ function App() {
     <RecoilRoot>
       <SearchBar />
       <Suspense fallback={<LoadingContainer>Loading...</LoadingContainer>}>
-        <MovieDetail />
+        <Modal />
         <SearchResult />
       </Suspense>
     </RecoilRoot>

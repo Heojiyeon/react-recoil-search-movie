@@ -6,3 +6,8 @@ export const SearchResultContainer = styled.div`
   justify-items: center;
   margin-top: 3rem;
 `;
+
+export const MoviePoster = styled.img`
+  width: 300px;
+  height: 450px;
+`;

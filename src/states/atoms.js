@@ -1,15 +1,13 @@
-import { atom, selector } from "recoil";
-import { API_KEY } from "../utils/url";
-import { ERROR_MESSAGE } from "../utils/constants";
 import axios from "axios";
+import { atom, selector } from "recoil";
+import { ERROR_MESSAGE } from "../utils/constants";
+import { API_KEY } from "../utils/url";
 
-// 검색어 상태 관리 atom
 export const searchState = atom({
   key: "SearchState",
   default: "",
 });
 
-// 검색 결과 selector
 export const getMovies = selector({
   key: "GetMovies",
   get: async ({ get }) => {
@@ -27,13 +25,11 @@ export const getMovies = selector({
   },
 });
 
-// 해당 영화 아이디 관리 atom
 export const movieIDState = atom({
   key: "MovieIDState",
   default: "",
 });
 
-// 영화 정보 selector
 export const getMovieDetail = selector({
   key: "GetMovieDetail",
   get: async ({ get }) => {
