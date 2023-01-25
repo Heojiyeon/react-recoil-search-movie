@@ -2,7 +2,13 @@ import { useEffect, useMemo } from "react";
 import ReactDOM from "react-dom";
 import { useRecoilValue } from "recoil";
 import { getMovieDetail } from "../../states/atoms";
-import { CloseButton, NewModal } from "./style";
+import {
+  CloseButton,
+  MovieDetails,
+  MoviePlot,
+  MovieTitle,
+  NewModal,
+} from "./style";
 
 const Modal = ({ visible = false, onClose }) => {
   const movieDetail = useRecoilValue(getMovieDetail);
@@ -23,9 +29,17 @@ const Modal = ({ visible = false, onClose }) => {
   return ReactDOM.createPortal(
     <NewModal style={{ display: visible ? "block" : "none" }}>
       <CloseButton onClick={() => closeModal()}>X</CloseButton>
-      <h3>{movieDetail.Title}</h3>
-      <img src={movieDetail.Poster} alt="영화포스터" />
-      <p>{movieDetail.Plot}</p>
+      <MovieDetails>
+        <MovieTitle>
+          <strong>{movieDetail.Title}</strong>
+        </MovieTitle>
+        <img
+          src={movieDetail.Poster}
+          alt="영화포스터"
+          style={{ width: 300, height: 400 }}
+        />
+        <MoviePlot>{movieDetail.Plot}</MoviePlot>
+      </MovieDetails>
     </NewModal>,
     el
   );
